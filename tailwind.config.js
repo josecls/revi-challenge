@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        fredoka: ['Fredoka', 'sans-serif'],
+        fredoka: ['Fredoka'],
       },
       colors: {
         primary: '#674AA3'

@@ -1,19 +1,19 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AppLayout } from './components/layout/AppLayout';
+import MonstersPage from './pages/Monsters';
+import BattlePage from './pages/Battle';
 
-import Home from './pages/Home'
-import Selection from './pages/Selection'
-import Battle from './pages/Battle'
-
-function App()  {
- return (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/selection" element={<Selection />} />
-      <Route path="/battle" element={<Battle />} />
-    </Routes>
-  </BrowserRouter>
- )
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route path="/monsters" element={<MonstersPage />} />
+          <Route path="/battlefield" element={<BattlePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
