@@ -11,9 +11,9 @@ export const AppLayout = () => {
       {/* Toggle Button - Always Visible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 bg-primary text-white p-2 rounded-lg shadow-lg bg-[#000]"
+        className="fixed top-4 left-4 z-50 bg-primary text-white p-2 rounded-lg shadow-lg bg-[#000] cursor-pointer"
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={24} className='hover:text-red-500' /> : <Menu size={24} className='hover:text-gray-300'/>}
       </button>
 
       {/* Sidebar */}
