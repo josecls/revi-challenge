@@ -1,17 +1,19 @@
 // Battlefield.tsx
-import { useState } from "react";
+import { useState } from 'react';
 
-import MonsterCard from "@/components/sections/MonsterCard";
-import { Button } from "@/components/ui/button";
-import MonsterSelectionList from "@/components/sections/MonsterSelectionList";
+import MonsterCard from '@/components/sections/MonsterBattlePreview';
+import { Button } from '@/components/ui/button';
+import MonsterSelectionList from '@/components/sections/MonsterSelectionList';
 import { MonsterEntity } from '@/core/Monster';
+import { useMonsters } from '@/contexts/MonsterContext';
 
-const generateMonsters = () => Array.from({ length: 15 }, (_, i) => new MonsterEntity(`Monster ${i}`, 1, 2, 3, 50, 'https://avatars.githubusercontent.com/u/124599?v=4'));
+// const generateMonsters = () => Array.from({ length: 15 }, (_, i) => new MonsterEntity(`Monster ${i}`, 1, 2, 3, 50, 'https://avatars.githubusercontent.com/u/124599?v=4'));
 
 const Battlefield = () => {
   const [selectedMonsterA, setSelectedMonsterA] = useState<MonsterEntity | null>(null);
   const [selectedMonsterB, setSelectedMonsterB] = useState<MonsterEntity | null>(null);
-  const monstersArray = generateMonsters();
+
+  const { monsters } = useMonsters();
 
   const handleMonsterSelect = (monster: MonsterEntity) => {
     if (selectedMonsterA?.name === monster.name) {
@@ -33,24 +35,37 @@ const Battlefield = () => {
         </h1>
 
         <div className="flex flex-wrap gap-8">
-          <MonsterSelectionList monsters={monstersArray} selectedA={selectedMonsterA} selectedB={selectedMonsterB} onSelect={handleMonsterSelect} />
+          <MonsterSelectionList
+            monsters={monsters}
+            selectedA={selectedMonsterA}
+            selectedB={selectedMonsterB}
+            onSelect={handleMonsterSelect}
+          />
 
           {selectedMonsterA && <MonsterCard monster={selectedMonsterA} />}
 
           <div className="flex flex-col justify-center gap-4">
             <Button className="bg-red-700 text-white cursor-pointer">Fight</Button>
-            <Button variant="outline" className="bg-blue-700 text-white cursor-pointer">Change Map</Button>
-            <Button variant="destructive" className="bg-yellow-700 text-white cursor-pointer">Retreat</Button>
+            <Button variant="outline" className="bg-blue-700 text-white cursor-pointer">
+              Change Map
+            </Button>
+            <Button variant="destructive" className="bg-yellow-700 text-white cursor-pointer">
+              Retreat
+            </Button>
           </div>
 
           {selectedMonsterB && <MonsterCard monster={selectedMonsterB} />}
 
-          <MonsterSelectionList monsters={monstersArray} selectedA={selectedMonsterA} selectedB={selectedMonsterB} onSelect={handleMonsterSelect} />
+          <MonsterSelectionList
+            monsters={monsters}
+            selectedA={selectedMonsterA}
+            selectedB={selectedMonsterB}
+            onSelect={handleMonsterSelect}
+          />
         </div>
 
         <div className="mt-10 w-full h-56 bg-gray-200 rounded shadow p-4 overflow-y-auto">
-          <p className="text-sm font-mono">🔪 Battle begins...
-          </p>
+          <p className="text-sm font-mono">🔪 Battle begins...</p>
         </div>
       </main>
     </div>

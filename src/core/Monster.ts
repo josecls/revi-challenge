@@ -15,7 +15,7 @@ export interface Monster {
 }
 
 // MonsterAttributes defines only the monster attributes
-export type MonsterAttributes = Omit<Monster, 'attackEnemy' | 'takeDamage' | 'isAlive'>
+export type MonsterAttributes = Omit<Monster, 'attackEnemy' | 'takeDamage' | 'isAlive'>;
 
 // MonsterEntity class implements the IMonster interface and provides methods for attacking, taking damage, and checking if the monster is alive.
 export class MonsterEntity implements Monster {

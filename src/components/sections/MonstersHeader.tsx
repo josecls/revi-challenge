@@ -14,19 +14,13 @@ import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 
 import { useMonsters } from '@/contexts/MonsterContext';
+import { MonsterEntity } from '@/core/Monster';
 
-const initialMonsterState = {
-  name: '',
-  attack: 0,
-  defense: 0,
-  speed: 0,
-  hp: 0,
-  image_url: '',
-};
+const initialMonsterState = new MonsterEntity('', 0, 0, 0, 0, '');
 
 const MonstersHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [monster, setMonster] = useState(initialMonsterState);
+  const [monster, setMonster] = useState<MonsterEntity>(initialMonsterState);
 
   const { addMonster } = useMonsters();
 
@@ -49,21 +43,44 @@ const MonstersHeader = () => {
     }
 
     addMonster(monster);
-    event.currentTarget.reset();
+    setMonster(initialMonsterState);
     setIsOpen(false);
-    setMonster(initialMonsterState); // Reset monster state after submission
     toast.success('Monster created successfully!');
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setMonster((prevMonster) => ({
-      ...prevMonster,
-      [name]:
-        name === 'attack' || name === 'defense' || name === 'speed' || name === 'hp'
-          ? parseInt(value, 10)
-          : value,
-    }));
+    const updated = new MonsterEntity(
+      monster.name,
+      monster.attack,
+      monster.defense,
+      monster.speed,
+      monster.hp,
+      monster.image_url,
+    );
+
+    switch (name) {
+      case 'name':
+        updated.name = value;
+        break;
+      case 'image_url':
+        updated.image_url = value;
+        break;
+      case 'attack':
+        updated.attack = parseInt(value, 10) || 0;
+        break;
+      case 'defense':
+        updated.defense = parseInt(value, 10) || 0;
+        break;
+      case 'speed':
+        updated.speed = parseInt(value, 10) || 0;
+        break;
+      case 'hp':
+        updated.hp = parseInt(value, 10) || 0;
+        break;
+    }
+
+    setMonster(updated);
   };
 
   return (
@@ -72,7 +89,7 @@ const MonstersHeader = () => {
         Monsters List
       </h1>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger className="flex justiy-center align-center bg-[#1EBA1E] font-[fredoka] text-white text-xl px-7 py-4 rounded-xl transition-transform duration-300 transform hover:scale-105 cursor-pointer">
+        <DialogTrigger className="flex justify-center items-center bg-[#1EBA1E] font-[fredoka] text-white text-xl px-7 py-4 rounded-xl transition-transform duration-300 transform hover:scale-105 cursor-pointer">
           <PlusCircleIcon className="size-6 mr-2" />
           New Monster
         </DialogTrigger>
@@ -84,60 +101,30 @@ const MonstersHeader = () => {
             </DialogDescription>
           </DialogHeader>
           <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">Monster Name</Label>
-              <Input
-                name="name"
-                onChange={handleInputChange}
-                placeholder="e.g. Alfred"
-                type="text"
-              ></Input>
-            </div>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">Attack</Label>
-              <Input
-                name="attack"
-                onChange={handleInputChange}
-                placeholder="e.g. 10"
-                type="number"
-              ></Input>
-            </div>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">Defense</Label>
-              <Input
-                name="defense"
-                onChange={handleInputChange}
-                placeholder="e.g. 4"
-                type="number"
-              ></Input>
-            </div>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">Speed</Label>
-              <Input
-                name="speed"
-                onChange={handleInputChange}
-                placeholder="e.g. 3"
-                type="number"
-              ></Input>
-            </div>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">HP</Label>
-              <Input
-                name="hp"
-                onChange={handleInputChange}
-                placeholder="e.g. 50"
-                type="number"
-              ></Input>
-            </div>
-            <div className="mb-3">
-              <Label className="text-sm mb-2 font-bold">Image URL</Label>
-              <Input
-                name="image_url"
-                onChange={handleInputChange}
-                placeholder="e.g. https://example.com/image.jpg"
-                type="url"
-              ></Input>
-            </div>
+            {[
+              { label: 'Monster Name', name: 'name', type: 'text', placeholder: 'e.g. Alfred' },
+              { label: 'Attack', name: 'attack', type: 'number', placeholder: 'e.g. 10' },
+              { label: 'Defense', name: 'defense', type: 'number', placeholder: 'e.g. 4' },
+              { label: 'Speed', name: 'speed', type: 'number', placeholder: 'e.g. 3' },
+              { label: 'HP', name: 'hp', type: 'number', placeholder: 'e.g. 50' },
+              {
+                label: 'Image URL',
+                name: 'image_url',
+                type: 'url',
+                placeholder: 'e.g. https://...',
+              },
+            ].map((field) => (
+              <div className="mb-3" key={field.name}>
+                <Label className="text-sm mb-2 font-bold">{field.label}</Label>
+                <Input
+                  name={field.name}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  onChange={handleInputChange}
+                />
+              </div>
+            ))}
+
             <Input
               type="submit"
               value="Create Monster"
