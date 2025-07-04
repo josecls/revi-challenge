@@ -17,8 +17,8 @@ export const Sidebar = () => {
 
       {/* Sidebar */}
       {isOpen && (
-        <div className="w-64 min-h-screen bg-purple-900 text-white fixed top-0 left-0 z-40 flex flex-col items-center justify-center">
-          <nav className="flex flex-col gap-8 text-xl font-semibold text-center">
+        <div className="w-64 min-h-screen bg-[#674AA3] text-white fixed top-0 left-0 z-40 flex flex-col items-center justify-center">
+          <nav className="flex flex-col gap-8 text-2xl font-semibold text-center">
             <NavLink
               to="/monsters"
               className={({ isActive }) => isActive ? 'text-green-500' : ''}
