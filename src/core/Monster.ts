@@ -1,5 +1,6 @@
 // Monster interface defines the attributes of a monster in the game.
 // It includes properties such as name, attack, defense, speed, hp, and image_url
+// Also include methods to define the monster's abilities
 export interface Monster {
   name: string;
   attack: number;
@@ -12,6 +13,9 @@ export interface Monster {
   takeDamage(damage: number): void;
   isAlive(): boolean;
 }
+
+// MonsterAttributes defines only the monster attributes
+export type MonsterAttributes = Omit<Monster, 'attackEnemy' | 'takeDamage' | 'isAlive'>
 
 // MonsterEntity class implements the IMonster interface and provides methods for attacking, taking damage, and checking if the monster is alive.
 export class MonsterEntity implements Monster {
