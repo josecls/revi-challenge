@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from "@/components/ui/sonner";
 import { AppLayout } from './components/layout/AppLayout';
 
 import MonstersPage from './pages/Monsters';
@@ -11,6 +12,7 @@ import { MonsterProvider } from './contexts/MonsterContext';
 function App() {
   return (
     <MonsterProvider>
+      <Toaster richColors position="top-center" />
       <BrowserRouter>
         <Routes>
           {/* Routes that doesnt have SideNav */}

@@ -6,36 +6,44 @@ import { useMonsters } from "@/contexts/MonsterContext";
 import { useState } from "react";
 import { toast } from "sonner";
 
+const initialMonsterState = {
+  name: '',
+  attack: 0,
+  defense: 0,
+  speed: 0,
+  hp: 0,
+  image_url: '',
+}
+
 function MonstersHeader() {
-    const [monster, setMonster] = useState({
-        name: '',
-        attack: 0,
-        defense: 0,
-        speed: 0,
-        hp: 0,
-        image_url: '',
-      });
-    const { addMonster } = useMonsters();
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [monster, setMonster] = useState(initialMonsterState);
+
+  const { addMonster } = useMonsters();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    console.log(monster)
     if (!monster.name || !monster.image_url) {
-      toast("Please fill in all fields.");
+      toast.warning("Please fill in all fields.");
       return;
     }
 
     if (monster.attack < 0 || monster.defense < 0 || monster.speed < 0 || monster.hp < 0) {
-      toast("Attack, Defense, Speed, and HP must be non-negative.");
+      toast.warning("Attack, Defense, Speed, and HP must be non-negative.");
       return;
     }
 
-    if (monster.attack === 0 && monster.defense === 0 && monster.speed === 0 && monster.hp === 0) {
-      toast("Monster attributes cannot all be zero.");
+    if (monster.attack === 0 || monster.defense === 0 || monster.speed === 0 || monster.hp === 0) {
+      toast.warning("Monster attributes cannot be zero.");
       return;
     }
 
     addMonster(monster);
+    event.currentTarget.reset();
+    setIsOpen(false);
+    setMonster(initialMonsterState); // Reset monster state after submission
+    toast.success("Monster created successfully!");
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +53,11 @@ function MonstersHeader() {
       [name]: name === 'attack' || name === 'defense' || name === 'speed' || name === 'hp' ? parseInt(value, 10) : value,
     }));
   }
+
   return (
     <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center px-4 md:px-12 lg:px-20 xl:px-32 mb-8 mt-50">
       <h1 className="text-4xl md:text-5xl font-extrabold font-[fredoka] text-[#674AA3] mt-10 md:mt-0">Monsters List</h1>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger className="flex justiy-center align-center bg-[#1EBA1E] font-[fredoka] text-white text-xl px-7 py-4 rounded-xl transition-transform duration-300 transform hover:scale-105 cursor-pointer">
             <PlusCircleIcon className="size-6 mr-2" />
             New Monster
