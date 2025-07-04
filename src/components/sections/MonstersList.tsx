@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -7,10 +5,6 @@ import { useMonsters } from '@/contexts/MonsterContext';
 
 const MonstersList = () => {
   const { monsters } = useMonsters();
-
-  useEffect(() => {
-    console.log(monsters);
-  }, [monsters]);
 
   return (
     <div className="py-15 bg-white flex flex-col justify-evenly">
