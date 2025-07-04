@@ -3,12 +3,12 @@ import MonstersList from "@/components/sections/MonstersList";
 
 export default function Monsters() {
     return (
-        <div className="">
-        <div /> {/* Top spacer */}
+        <div>
+            <div /> {/* Top spacer */}
 
-        <main className="">
-            <MonstersList />
-        </main>
-    </div>
+            <main className="">
+                <MonstersList />
+            </main>
+        </div>
     );
 } 

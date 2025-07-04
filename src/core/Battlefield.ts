@@ -1,4 +1,4 @@
-import type { Monster } from './monster';
+import type { Monster } from './Monster';
 
 // Battlefield interface defines the structure of a battle between two monsters.
 // It includes properties for the two monsters, the current turn, and the maximum number of turns
