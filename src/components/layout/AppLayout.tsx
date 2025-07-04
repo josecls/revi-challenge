@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { X, Menu } from 'lucide-react';
 
 export const AppLayout = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex h-screen relative">

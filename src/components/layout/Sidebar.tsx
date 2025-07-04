@@ -31,6 +31,12 @@ export const Sidebar = () => {
             >
               Battlefield
             </NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) => isActive ? 'text-green-500' : ''}
+            >
+              Logout
+            </NavLink>
           </nav>
 
           <footer className="absolute bottom-4 text-xs text-white/70 text-center w-full">
