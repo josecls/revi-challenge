@@ -1,6 +1,6 @@
-import { FrownIcon } from 'lucide-react'
+import { FrownIcon } from 'lucide-react';
 
-function NotFound() {
+const NotFound = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="text-center flex flex-col items-center">
@@ -10,6 +10,6 @@ function NotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default NotFound;

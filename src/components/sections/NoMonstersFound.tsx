@@ -1,6 +1,6 @@
-import { FrownIcon } from 'lucide-react'
+import { FrownIcon } from 'lucide-react';
 
-function NoMonstersFound() {
+const NoMonstersFound = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full md:mt-60">
       <FrownIcon className="w-16 h-16 text-gray-400 mb-4" />
@@ -8,6 +8,6 @@ function NoMonstersFound() {
       <p className="text-gray-600">Start adding your monsters to see them here!</p>
     </div>
   );
-}
+};
 
 export default NoMonstersFound;

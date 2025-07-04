@@ -7,15 +7,15 @@ import type { Monster } from './Monster';
 // The battlefield is responsible for managing the flow of the battle, including turn order and victory conditions
 // It does not handle the actual combat logic, which is managed by the Monster class.
 export interface Battlefield {
-    monster1: Monster;
-    monster2: Monster;
-    turn: number;
-    maxTurns: number;
+  monster1: Monster;
+  monster2: Monster;
+  turn: number;
+  maxTurns: number;
 
-    startBattle(): void;
-    nextTurn(): void;
-    determineWinner(): Monster | null;
-    isBattleOver(): boolean;
+  startBattle(): void;
+  nextTurn(): void;
+  determineWinner(): Monster | null;
+  isBattleOver(): boolean;
 }
 
 // BattlefieldEntity class implements the Battlefield interface and provides methods for starting the battle,

@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Toaster } from "@/components/ui/sonner";
-import { AppLayout } from './components/layout/AppLayout';
 
+import AppLayout from './components/layout/AppLayout';
 import MonstersPage from './pages/Monsters';
 import BattlePage from './pages/Battle';
 import HomePage from './pages/Home';
 import NotFoundPage from './pages/NotFound';
-
 import { MonsterProvider } from './contexts/MonsterContext';
 
-function App() {
+import { Toaster } from '@/components/ui/sonner';
+
+const App = () => {
   return (
     <MonsterProvider>
       <Toaster richColors position="top-center" />
@@ -27,6 +27,6 @@ function App() {
       </BrowserRouter>
     </MonsterProvider>
   );
-}
+};
 
 export default App;

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-export const Sidebar = () => {
+const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -21,20 +21,17 @@ export const Sidebar = () => {
           <nav className="flex flex-col gap-8 text-2xl font-semibold text-center">
             <NavLink
               to="/monsters"
-              className={({ isActive }) => isActive ? 'text-green-500' : ''}
+              className={({ isActive }) => (isActive ? 'text-green-500' : '')}
             >
               Monsters
             </NavLink>
             <NavLink
               to="/battlefield"
-              className={({ isActive }) => isActive ? 'text-green-500' : ''}
+              className={({ isActive }) => (isActive ? 'text-green-500' : '')}
             >
               Battlefield
             </NavLink>
-            <NavLink
-              to="/"
-              className={({ isActive }) => isActive ? 'text-green-500' : ''}
-            >
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'text-green-500' : '')}>
               Logout
             </NavLink>
           </nav>
@@ -47,3 +44,5 @@ export const Sidebar = () => {
     </>
   );
 };
+
+export default Sidebar;

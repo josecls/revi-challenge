@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Sidebar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { X, Menu } from 'lucide-react';
 
-export const AppLayout = () => {
+import Sidebar from './Sidebar';
+
+const AppLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,7 +14,11 @@ export const AppLayout = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-4 left-4 z-50 bg-primary text-white p-2 rounded-lg shadow-lg bg-[#000] cursor-pointer"
       >
-        {isOpen ? <X size={24} className='hover:text-red-500' /> : <Menu size={24} className='hover:text-gray-300'/>}
+        {isOpen ? (
+          <X size={24} className="hover:text-red-500" />
+        ) : (
+          <Menu size={24} className="hover:text-gray-300" />
+        )}
       </button>
 
       {/* Sidebar */}
@@ -34,3 +39,5 @@ export const AppLayout = () => {
     </div>
   );
 };
+
+export default AppLayout;
