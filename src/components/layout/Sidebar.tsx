@@ -17,7 +17,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       {isOpen && (
-        <div className="w-64 min-h-screen bg-[#674AA3] text-white fixed top-0 left-0 z-40 flex flex-col items-center justify-center">
+        <div className="w-70 min-h-screen bg-[#674AA3] text-white fixed top-0 left-0 z-40 flex flex-col items-center justify-center">
           <nav className="flex flex-col gap-8 text-2xl font-semibold text-center">
             <NavLink
               to="/monsters"
