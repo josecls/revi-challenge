@@ -2,7 +2,7 @@ import { PlusCircleIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 
@@ -72,6 +72,9 @@ const MonstersHeader = () => {
         <DialogContent className="bg-white">
           <DialogHeader className="text-[#674AA3]">
             <DialogTitle className="text-2xl">Create a new monster</DialogTitle>
+            <DialogDescription className="text-sm text-gray-600">
+              Tell us how your monster looks like and its attributes.
+            </DialogDescription>
           </DialogHeader>
           <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
             <div className="mb-3">
