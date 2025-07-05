@@ -32,6 +32,7 @@ const MonsterSelectionList = ({
                 isSelectedAsA={selectedA?.identifier === monster.identifier}
                 isSelectedAsB={selectedB?.identifier === monster.identifier}
                 onClick={() =>
+                  /** resets monsters attributes whenever you deselect and select again between fights */
                   onSelect(
                     new MonsterEntity(
                       monster.identifier,

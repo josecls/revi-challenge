@@ -5,11 +5,11 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-import { type MonsterAttributes } from '@/core/Monster';
+import { MonsterEntity, type MonsterAttributes } from '@/core/Monster';
 
 // MonsterContextType defines the structure of the monster context.
 type MonsterContextType = {
-  monsters: MonsterAttributes[];
+  monsters: MonsterEntity[];
   addMonster: (monster: MonsterAttributes) => void;
 };
 
@@ -17,9 +17,22 @@ const MonsterContext = createContext<MonsterContextType | undefined>(undefined);
 
 // MonsterProvider defines the monster provider wrapper.
 export const MonsterProvider = ({ children }: { children: ReactNode }) => {
-  const [monsters, setMonsters] = useState<MonsterAttributes[]>([]);
+  const [monsters, setMonsters] = useState<MonsterEntity[]>([]);
 
-  const addMonster = (monster: MonsterAttributes) => setMonsters((prev) => [...prev, monster]);
+  // addMonster uses monster attributes to create a monster entity
+  const addMonster = (monster: MonsterAttributes) => {
+    const newMonster = new MonsterEntity(
+      monster.identifier,
+      monster.name,
+      monster.attack,
+      monster.defense,
+      monster.speed,
+      monster.hp,
+      monster.image_url,
+    );
+
+    setMonsters((prev) => [...prev, newMonster]);
+  };
 
   return (
     <MonsterContext.Provider value={{ monsters, addMonster }}>{children}</MonsterContext.Provider>
