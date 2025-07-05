@@ -61,6 +61,16 @@ Then finally access it at http://localhost:5173 or by following the link provide
  └── App.tsx            # Main app entry and Routing
 ```
 
+## 💭 Future Improvements
+
+- Add Pagination/Search to the Monster Listing page — scrolling endlessly isn’t fun, right?
+- Include sound effects and animations during battles to enhance excitement
+- Introduce themed scenarios that change the background for a more immersive experience
+- Persist monster roster using local storage so users don't lose progress
+- Implement critical hits and abilities for a richer combat system
+- Add unit tests to ensure battle logic works as expected
+- Improve the UX on mobile views
+
 ## 🧑‍💻 Author
 
 Made with ☕ by [josecls](https://github.com/josecls)
