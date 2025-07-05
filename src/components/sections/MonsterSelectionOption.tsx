@@ -6,6 +6,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from '../ui/hover-card'
 
 import { type MonsterAttributes } from '@/core/Monster';
 
+// MonsterSelectionOptionProps define crucial props to be used by the MonsterSelectionOption component.
 interface MonsterSelectionOptionProps {
   monster: MonsterAttributes;
   isSelectedAsA: boolean;
@@ -13,12 +14,14 @@ interface MonsterSelectionOptionProps {
   onClick: () => void;
 }
 
+// MonsterSelectionOption defines the structure responsible for rendering monster options in the battlefield page.
 const MonsterSelectionOption = ({
   monster,
   isSelectedAsA,
   isSelectedAsB,
   onClick,
 }: MonsterSelectionOptionProps) => {
+  // regular border is gray, monster A is green and monster B is red.
   let borderColor = 'border-gray-300';
   if (isSelectedAsA) borderColor = 'border-green-400';
   else if (isSelectedAsB) borderColor = 'border-red-500';

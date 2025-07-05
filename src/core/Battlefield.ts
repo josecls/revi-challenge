@@ -1,6 +1,6 @@
 import type { Monster } from './Monster';
 
-import { sleep } from '@/helpers/utils';
+import { sleep } from '@/lib/utils';
 
 // Battlefield interface defines the structure of a battle between two monsters.
 // It includes properties for the two monsters, the current turn, and the maximum number of turns

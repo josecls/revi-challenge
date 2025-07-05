@@ -1,21 +1,15 @@
 import { Label } from '../ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
+import { type MonsterAttributes } from '@/core/Monster'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-type Monster = {
-  name: string;
-  image_url: string;
-  attack: number;
-  defense: number;
-  speed: number;
-  hp: number;
-};
-
+// MonsterCardProps define crucial props to be used by the MonsterCard component
 interface MonsterCardProps {
-  monster: Monster;
+  monster: MonsterAttributes;
 }
 
+// MonsterCard defines the structure responsible for illustrating the monster attributes on both Monsters and Battlefield pages.
 const MonsterCard = ({ monster }: MonsterCardProps) => {
   return (
     <Card className="w-80 text-black shadow-md hover:shadow-xl transition-all bg-gray-100 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">

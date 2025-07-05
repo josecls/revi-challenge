@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
+// Sidebar defines the structure that group together all menu actions in the platform.
+// It communicates directly with the routing system to redirect users.
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 

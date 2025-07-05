@@ -4,6 +4,7 @@ import { X, Menu } from 'lucide-react';
 
 import Sidebar from './Sidebar';
 
+// AppLayout defines the structure that talks with the rest of the app and manages how and when the Sidebar is showing.
 const AppLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
 

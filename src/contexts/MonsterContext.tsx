@@ -5,32 +5,28 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-export interface Monster {
-  name: string;
-  attack: number;
-  defense: number;
-  speed: number;
-  hp: number;
-  image_url: string;
-}
+import { type MonsterAttributes } from '@/core/Monster'
 
+// MonsterContextType defines the structure of the monster context.
 type MonsterContextType = {
-  monsters: Monster[];
-  addMonster: (monster: Monster) => void;
+  monsters: MonsterAttributes[];
+  addMonster: (monster: MonsterAttributes) => void;
 };
 
 const MonsterContext = createContext<MonsterContextType | undefined>(undefined);
 
+// MonsterProvider defines the monster provider wrapper.
 export const MonsterProvider = ({ children }: { children: ReactNode }) => {
-  const [monsters, setMonsters] = useState<Monster[]>([]);
+  const [monsters, setMonsters] = useState<MonsterAttributes[]>([]);
 
-  const addMonster = (monster: Monster) => setMonsters((prev) => [...prev, monster]);
+  const addMonster = (monster: MonsterAttributes) => setMonsters((prev) => [...prev, monster]);
 
   return (
     <MonsterContext.Provider value={{ monsters, addMonster }}>{children}</MonsterContext.Provider>
   );
 };
 
+// useMonsters defines the hook used all across the platform to access the monsters data.
 export const useMonsters = () => {
   const context = useContext(MonsterContext);
   if (!context) throw new Error('useMonsters must be used within a MonsterProvider');

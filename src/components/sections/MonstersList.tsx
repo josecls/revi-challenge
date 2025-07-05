@@ -2,6 +2,7 @@ import MonsterCard from './MonsterBattlePreview';
 
 import { useMonsters } from '@/contexts/MonsterContext';
 
+// MonstersList defines the structure responsible for listing monsters.
 const MonstersList = () => {
   const { monsters } = useMonsters();
 

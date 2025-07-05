@@ -18,12 +18,14 @@ import { MonsterEntity } from '@/core/Monster';
 
 const initialMonsterState = new MonsterEntity('', 0, 0, 0, 0, '');
 
+// MonstersHeader defines the structure responsible for rendering and managing the creation of monsters.
 const MonstersHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [monster, setMonster] = useState<MonsterEntity>(initialMonsterState);
 
   const { addMonster } = useMonsters();
 
+  // handleSubmit is responsible for processing the creation of a new monster.
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -48,6 +50,7 @@ const MonstersHeader = () => {
     toast.success('Monster created successfully!');
   };
 
+  // handleInputChange is responsible for capturing and storing whenever the user enters the new monster info.
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const updated = new MonsterEntity(

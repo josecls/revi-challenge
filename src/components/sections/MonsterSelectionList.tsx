@@ -5,6 +5,7 @@ import MonsterSelectionOption from './MonsterSelectionOption';
 
 import { type MonsterAttributes, type Monster, MonsterEntity } from '@/core/Monster';
 
+// MonsterSelectionListProps define crucial props to be used by the MonsterSelectionList component.
 interface MonsterSelectionListProps {
   monsters: MonsterAttributes[];
   selectedA: Monster | null;
@@ -12,6 +13,7 @@ interface MonsterSelectionListProps {
   onSelect: (monster: MonsterEntity) => void;
 }
 
+// MonsterSelectionList is responsible for listing monster options in the battlefield page, so the user can select which ones are going to fight.
 const MonsterSelectionList = ({
   monsters,
   selectedA,
