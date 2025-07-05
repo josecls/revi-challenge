@@ -1,4 +1,3 @@
-// MonsterSelectionList.tsx
 import { ScrollArea } from '../ui/scroll-area';
 
 import MonsterSelectionOption from './MonsterSelectionOption';

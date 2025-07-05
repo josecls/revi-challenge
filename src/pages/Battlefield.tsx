@@ -1,4 +1,3 @@
-// Battlefield.tsx
 import { toast } from 'sonner';
 import { useState, useEffect, useRef } from 'react';
 
@@ -15,6 +14,7 @@ const Battlefield = () => {
   const [selectedMonsterA, setSelectedMonsterA] = useState<MonsterEntity | null>(null);
   const [selectedMonsterB, setSelectedMonsterB] = useState<MonsterEntity | null>(null);
   const [fightLogs, setFightLogs] = useState<string[]>([]);
+  const [isFightOnGoing, setIsFightOnGoing] = useState(false);
 
   const { monsters } = useMonsters();
 
@@ -28,6 +28,8 @@ const Battlefield = () => {
       setFightLogs((previousLogs) => [...previousLogs, msg]);
     };
 
+    // set the fight as ongoing and create the battlefield
+    setIsFightOnGoing(true);
     const battlefield = new BattlefieldEntity(selectedMonsterA, selectedMonsterB, logger);
     await battlefield.startBattle();
 
@@ -35,11 +37,17 @@ const Battlefield = () => {
     if (winner) {
       toast.info(`The battle has ended. The winner is ${winner.name}! 🏆`);
     }
+    setIsFightOnGoing(false);
     return;
   };
 
   // handleMonsterSelect is responsible for managing the selection of monsters.
   const handleMonsterSelect = (monster: MonsterEntity) => {
+    if (isFightOnGoing) {
+      toast.info('A fight is currently in progress. Please wait until it finishes.');
+      return;
+    }
+
     if (selectedMonsterA?.identifier === monster.identifier) {
       setSelectedMonsterA(null);
     } else if (selectedMonsterB?.identifier === monster.identifier) {
@@ -103,7 +111,7 @@ const Battlefield = () => {
 
               <h2 className="text-xl font-semibold text-gray-700">Battle Logs</h2>
               <h4 className="text-sm text-gray-700">Get track of every single thing</h4>
-              <div className="w-full h-56 sm:h-80 bg-white rounded shadow p-4 overflow-y-auto border border-gray-200 rounded">
+              <div className="w-full h-150 sm:h-200 bg-white rounded shadow p-4 overflow-y-auto border border-gray-200 rounded">
                 <p className="text-sm font-mono">🔪 Battle is about to start...</p>
                 {fightLogs.map((log, index) => (
                   <p key={index} className="text-sm font-mono">
