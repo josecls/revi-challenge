@@ -40,9 +40,9 @@ const Battlefield = () => {
 
   // handleMonsterSelect is responsible for managing the selection of monsters.
   const handleMonsterSelect = (monster: MonsterEntity) => {
-    if (selectedMonsterA?.name === monster.name) {
+    if (selectedMonsterA?.identifier === monster.identifier) {
       setSelectedMonsterA(null);
-    } else if (selectedMonsterB?.name === monster.name) {
+    } else if (selectedMonsterB?.identifier === monster.identifier) {
       setSelectedMonsterB(null);
     } else if (!selectedMonsterA) {
       setSelectedMonsterA(monster);

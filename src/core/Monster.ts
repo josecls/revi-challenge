@@ -2,6 +2,7 @@
 // It includes properties such as name, attack, defense, speed, hp, and image_url
 // Also include methods to define the monster's abilities
 export interface Monster {
+  identifier: string;
   name: string;
   attack: number;
   defense: number;
@@ -19,6 +20,7 @@ export type MonsterAttributes = Omit<Monster, 'attackEnemy' | 'takeDamage' | 'is
 
 // MonsterEntity class implements the IMonster interface and provides methods for attacking, taking damage, and checking if the monster is alive.
 export class MonsterEntity implements Monster {
+  identifier: string;
   name: string;
   attack: number;
   defense: number;
@@ -27,6 +29,7 @@ export class MonsterEntity implements Monster {
   image_url: string;
 
   constructor(
+    identifier: string,
     name: string,
     attack: number,
     defense: number,
@@ -34,6 +37,7 @@ export class MonsterEntity implements Monster {
     hp: number,
     image_url: string,
   ) {
+    this.identifier = identifier;
     this.name = name;
     this.attack = attack;
     this.defense = defense;

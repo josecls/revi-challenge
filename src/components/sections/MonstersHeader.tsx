@@ -13,10 +13,11 @@ import {
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 
+import { generateMonsterIdentifier } from '@/lib/utils';
 import { useMonsters } from '@/contexts/MonsterContext';
 import { MonsterEntity } from '@/core/Monster';
 
-const initialMonsterState = new MonsterEntity('', 0, 0, 0, 0, '');
+const initialMonsterState = new MonsterEntity('', '', 0, 0, 0, 0, '');
 
 // MonstersHeader defines the structure responsible for rendering and managing the creation of monsters.
 const MonstersHeader = () => {
@@ -54,6 +55,7 @@ const MonstersHeader = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     const updated = new MonsterEntity(
+      generateMonsterIdentifier(monster.name),
       monster.name,
       monster.attack,
       monster.defense,

@@ -25,15 +25,16 @@ const MonsterSelectionList = ({
       <ScrollArea className="h-96 p-4 overflow-y-auto">
         <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
           {monsters.length > 0 &&
-            monsters.map((monster, index) => (
+            monsters.map((monster) => (
               <MonsterSelectionOption
-                key={index}
+                key={monster.identifier}
                 monster={monster}
-                isSelectedAsA={selectedA?.name === monster.name}
-                isSelectedAsB={selectedB?.name === monster.name}
+                isSelectedAsA={selectedA?.identifier === monster.identifier}
+                isSelectedAsB={selectedB?.identifier === monster.identifier}
                 onClick={() =>
                   onSelect(
                     new MonsterEntity(
+                      monster.identifier,
                       monster.name,
                       monster.attack,
                       monster.defense,
