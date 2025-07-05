@@ -33,11 +33,11 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-    
-  // React will bug us to add setIsOpen as dependency here but it is not necessary
-  // It is safe to omit it because useState setter functions are stable and guaranteed
-  // by React.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // React will bug us to add setIsOpen as dependency here but it is not necessary
+    // It is safe to omit it because useState setter functions are stable and guaranteed
+    // by React.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (

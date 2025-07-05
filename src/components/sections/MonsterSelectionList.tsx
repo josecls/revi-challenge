@@ -22,7 +22,7 @@ const MonsterSelectionList = ({
 }: MonsterSelectionListProps) => {
   return (
     <div className="w-full h-full bg-white rounded shadow flex flex-col border border-gray-200 rounded">
-      <ScrollArea className="h-96 p-4 overflow-y-auto">
+      <ScrollArea className="h-96 lg:h-200 p-4 overflow-y-auto">
         <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
           {monsters.length > 0 &&
             monsters.map((monster) => (
