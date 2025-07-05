@@ -21,7 +21,7 @@ const MonsterSelectionList = ({
   onSelect,
 }: MonsterSelectionListProps) => {
   return (
-    <div className="w-full h-full bg-gray-200 rounded shadow flex flex-col">
+    <div className="w-full h-full bg-white rounded shadow flex flex-col border border-gray-200 rounded">
       <ScrollArea className="h-96 p-4 overflow-y-auto">
         <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
           {monsters.length > 0 &&

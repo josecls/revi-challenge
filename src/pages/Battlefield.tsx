@@ -70,7 +70,7 @@ const Battlefield = () => {
             <div className="flex flex-col justify-start">
               <h2 className="text-xl font-semibold text-gray-700 mb-3">Monsters selection</h2>
               <h4 className="text-sm text-gray-700 mb-8">
-                Hover over the monster to see its attributes
+                Hover over the monster's avatar to see its attributes
               </h4>
               <MonsterSelectionList
                 monsters={monsters}
@@ -86,7 +86,7 @@ const Battlefield = () => {
               <h4 className="text-sm text-gray-700">
                 See attribute changes in real time during the fight
               </h4>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 bg-gray-200 p-5">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 bg-white shadow p-5 w-full h-full border border-gray-200 rounded">
                 {selectedMonsterA && <MonsterCard monster={selectedMonsterA} />}
                 <div className="flex flex-col justify-center gap-4">
                   {selectedMonsterA && selectedMonsterB && (
@@ -103,7 +103,7 @@ const Battlefield = () => {
 
               <h2 className="text-xl font-semibold text-gray-700">Battle Logs</h2>
               <h4 className="text-sm text-gray-700">Get track of every single thing</h4>
-              <div className="w-full h-56 sm:h-80 bg-gray-200 rounded shadow p-4 overflow-y-auto">
+              <div className="w-full h-56 sm:h-80 bg-white rounded shadow p-4 overflow-y-auto border border-gray-200 rounded">
                 <p className="text-sm font-mono">🔪 Battle is about to start...</p>
                 {fightLogs.map((log, index) => (
                   <p key={index} className="text-sm font-mono">
