@@ -20,6 +20,7 @@ const MonsterSelectionList = ({
 }: MonsterSelectionListProps) => {
   return (
     <div className="w-[80%] h-90 md:w-100 md:h-90 bg-gray-200 rounded shadow flex flex-col items-center">
+      <p className="text-xl font-bold mt-4">Select a Monster</p>
       <ScrollArea className="h-96 p-4 overflow-y-auto">
         <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
           {monsters.length > 0 &&

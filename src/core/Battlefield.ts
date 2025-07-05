@@ -1,5 +1,7 @@
 import type { Monster } from './Monster';
 
+import { sleep } from '@/helpers/utils';
+
 // Battlefield interface defines the structure of a battle between two monsters.
 // It includes properties for the two monsters, the current turn, and the maximum number of turns
 // It also includes methods to start the battle, proceed to the next turn, determine the winner
@@ -16,6 +18,7 @@ export interface Battlefield {
   nextTurn(): void;
   determineWinner(): Monster | null;
   isBattleOver(): boolean;
+  logger: (msg: string) => void;
 }
 
 // BattlefieldEntity class implements the Battlefield interface and provides methods for starting the battle,
@@ -25,52 +28,53 @@ export class BattlefieldEntity implements Battlefield {
   monster2: Monster;
   turn = 0;
   maxTurns = 100;
-  verbose: boolean;
+  logger: (msg: string) => void;
 
-  constructor(monster1: Monster, monster2: Monster, verbose: boolean = true) {
+  constructor(monster1: Monster, monster2: Monster, logger: (msg: string) => void) {
     this.monster1 = monster1;
     this.monster2 = monster2;
-    this.verbose = verbose;
+    this.logger = logger;
   }
 
-  startBattle(): void {
-    if (this.verbose) {
-      console.log(`🏁 Battle Start: ${this.monster1.name} vs ${this.monster2.name}\n`);
-    }
+  async startBattle(): Promise<void> {
+    this.logger(`🏁 Battle Start: ${this.monster1.name} vs ${this.monster2.name}\n`);
 
     while (!this.isBattleOver() && this.turn < this.maxTurns) {
-      this.nextTurn();
+      await this.nextTurn();
     }
 
     const winner = this.determineWinner();
-    if (this.verbose) {
-      if (winner) {
-        console.log(`\n🏆 Battle Over: Winner is ${winner.name} with ${winner.hp} HP remaining!`);
-      } else {
-        console.log(`\n⚔️ Battle Over: It's a draw! Both monsters are defeated.`);
-      }
+    if (winner) {
+      this.logger(`\n🏆 Battle Over: Winner is ${winner.name} with ${winner.hp} HP remaining!`);
+    } else {
+      this.logger(`\n⚔️ Battle Over: It's a draw! Both monsters are defeated.`);
     }
   }
 
-  nextTurn(): void {
+  async nextTurn(): Promise<void> {
     const round = Math.floor(this.turn / 2) + 1;
-    if (this.verbose) console.log(`🔄 Round ${round}`);
+    this.logger(`🔄 Round ${round}`);
+    await sleep(400);
 
     const [first, second] = this.getTurnOrder();
 
-    if (this.verbose) console.log(`➡️ ${first.name} attacks ${second.name}`);
-    first.attackEnemy(second, this.verbose);
-    if (this.verbose) console.log(`🩸 ${second.name} HP: ${second.hp}`);
+    this.logger(`➡️ ${first.name} attacks ${second.name}`);
+    await sleep(500);
+    first.attackEnemy(second, this.logger);
+    this.logger(`🩸 ${second.name} HP: ${second.hp}`);
+    await sleep(500);
     this.turn++;
 
     if (!second.isAlive()) return;
 
-    if (this.verbose) console.log(`➡️ ${second.name} counter-attacks ${first.name}`);
-    second.attackEnemy(first, this.verbose);
-    if (this.verbose) console.log(`🩸 ${first.name} HP: ${first.hp}`);
+    this.logger(`➡️ ${second.name} counter-attacks ${first.name}`);
+    await sleep(500);
+    second.attackEnemy(first, this.logger);
+    this.logger(`🩸 ${first.name} HP: ${first.hp}`);
+    await sleep(500);
     this.turn++;
 
-    if (this.verbose) console.log('');
+    this.logger('');
   }
 
   determineWinner(): Monster | null {

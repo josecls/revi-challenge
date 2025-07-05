@@ -9,7 +9,7 @@ export interface Monster {
   hp: number;
   image_url: string;
 
-  attackEnemy(enemy: Monster, verbose?: boolean): void;
+  attackEnemy(enemy: Monster, logger: (msg: string) => void): void;
   takeDamage(damage: number): void;
   isAlive(): boolean;
 }
@@ -42,11 +42,10 @@ export class MonsterEntity implements Monster {
     this.image_url = image_url;
   }
 
-  attackEnemy(enemy: Monster, verbose: boolean = false): void {
+  attackEnemy(enemy: Monster, logger: (msg: string) => void): void {
     const damage = Math.max(1, this.attack - enemy.defense);
-    if (verbose) {
-      console.log(`💥 ${this.name} deals ${damage} damage to ${enemy.name}`);
-    }
+    logger(`💥 ${this.name} deals ${damage} damage to ${enemy.name}`);
+
     enemy.takeDamage(damage);
   }
 
