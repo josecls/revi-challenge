@@ -1,35 +1,66 @@
-# Monsters Fight - Revi Challenge
+# 🧟 Monsters Fight - Revi Challenge
 
-This project is regarding a platform where users can create monsters and make them fight. Users can define certain attributes such as Attack, Defense, Speed and HP of monsters while creating them, and then witness epic fights.
+A mini-game built for Revi’s technical challenge where users can create custom monsters and make them battle based on their attributes.
 
-### Stack
+## 🚀 Stack
 
-- ReactJS
-- TypeScript
-- TailwindCSS
-- Shadcn
+- ⚛️ React + TypeScript
+- 🎨 TailwindCSS
+- 🧩 Shadcn/ui
+- 🧠 Custom battle logic in plain TS classes
 
-### How to run the project?
+## 🛠️ How to Run
 
-1. Clone this repo
+1. **Clone the repository**
 
-```
-  git clone git@github.com:josecls/revi-challenge.git
-```
-
-2. Install all dependencies
-
-```
-  npm install
+```bash
+git clone git@github.com:josecls/revi-challenge.git
+cd revi-challenge
 ```
 
-3. Run the project and have fun!
+2. **Install dependencies**
 
+```bash
+npm install
 ```
-  npm run dev
+
+3. **Start the development server**
+
+```bash
+npm run dev
 ```
 
-### Features
+Then finally access it at http://localhost:5173 or by following the link provided in your terminal.
 
-1. Add monsters informing their attributes
-2. Create epic fights and witness the monsters power
+## ✨ Features
+
+- 🧬 Create monsters with attributes: Attack, Defense, Speed, and HP
+- ⚔️ Battle simulator with real-time UI and logs
+- 💡 Attribute-based turn system with dynamic damage calculation
+- 💻 Responsive layout for desktop and mobile
+- 🖱️ Hover-to-preview attributes
+- 📜 Scroll-following battle log
+- 🧹 Clean and modern UI using Tailwind + Shadcn
+
+## Technical Highlights
+
+- Battlefield logic is encapsulated in a pure TypeScript class for testability and separation of concerns
+- Functional component structure with hooks for reactivity
+- Animation + auto-scroll for battle logs using `useRef` + `useEffect`
+- State managed entirely in component-level React hooks
+
+## 📁 Folder Structure
+
+```txt
+/src
+ ├── components/        # UI Components (Cards, Sections, Lists)
+ ├── contexts/          # React Context for shared state
+ ├── core/              # Battle logic and Monster entity
+ ├── lib/               # Useful shareable pieces of code
+ ├── pages/             # App views
+ └── App.tsx            # Main app entry and Routing
+```
+
+## 🧑‍💻 Author
+
+Made with ☕ by [josecls](https://github.com/josecls)
