@@ -25,7 +25,7 @@ const AppLayout = () => {
       {/* Sidebar */}
       {isOpen && (
         <div className="fixed inset-y-0 left-0 z-40 w-64">
-          <Sidebar />
+          <Sidebar isOpen setIsOpen={setIsOpen} />
         </div>
       )}
 

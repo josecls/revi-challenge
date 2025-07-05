@@ -12,7 +12,7 @@ interface MonsterCardProps {
 // MonsterCard defines the structure responsible for illustrating the monster attributes on both Monsters and Battlefield pages.
 const MonsterCard = ({ monster }: MonsterCardProps) => {
   return (
-    <Card className="w-[80%] md:w-[70%] text-black shadow-md hover:shadow-xl transition-all bg-gray-100 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+    <Card className="w-[80%] md:w-[100%] text-black shadow-md hover:shadow-xl transition-all bg-gray-100 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
       <CardHeader className="flex flex-col items-center gap-4">
         <Avatar className="w-20 h-20 border border-gray-300">
           <AvatarImage src={monster.image_url} />

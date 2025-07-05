@@ -61,7 +61,7 @@ const Battlefield = () => {
     <>
       {monsters.length > 0 ? (
         <main className="mt-20 md:mt-40 px-4 sm:px-6 lg:px-8 flex flex-col w-full">
-          <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold font-[fredoka] text-[#674AA3] md:text-left mb-20 md:pl-20">
+          <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold font-[fredoka] text-[#674AA3] md:text-left mb-20">
             Welcome to the Battlefield
           </h1>
 
