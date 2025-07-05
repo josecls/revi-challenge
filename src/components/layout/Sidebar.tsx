@@ -18,6 +18,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     setIsOpen(!isOpen);
   };
 
+  // handling closing the sidenav by clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (sideNavRef.current && !sideNavRef.current.contains(event.target as Node)) {
@@ -32,6 +33,11 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+    
+  // React will bug us to add setIsOpen as dependency here but it is not necessary
+  // It is safe to omit it because useState setter functions are stable and guaranteed
+  // by React.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (
