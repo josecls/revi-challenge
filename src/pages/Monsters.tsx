@@ -3,6 +3,7 @@ import MonstersHeader from '@/components/sections/MonstersHeader';
 import NoMonstersFound from '@/components/sections/NoMonstersFound';
 import { useMonsters } from '@/contexts/MonsterContext';
 
+// Monsters define the Monsters listing page, where the user is able to create new monsters and see the ones he already created.
 const Monsters = () => {
   const { monsters } = useMonsters();
 

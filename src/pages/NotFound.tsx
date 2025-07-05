@@ -1,5 +1,6 @@
 import { FrownIcon } from 'lucide-react';
 
+// NotFound defines the page users are redirected to whenever they go to a not mapped route.
 const NotFound = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

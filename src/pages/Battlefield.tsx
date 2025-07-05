@@ -9,6 +9,7 @@ import { MonsterEntity } from '@/core/Monster';
 import { BattlefieldEntity } from '@/core/Battlefield';
 import { useMonsters } from '@/contexts/MonsterContext';
 
+// Battlefield defines the page where the action happens, i.e. the page where users can create and watch monsters battle.
 const Battlefield = () => {
   const [selectedMonsterA, setSelectedMonsterA] = useState<MonsterEntity | null>(null);
   const [selectedMonsterB, setSelectedMonsterB] = useState<MonsterEntity | null>(null);
@@ -16,6 +17,7 @@ const Battlefield = () => {
 
   const { monsters } = useMonsters();
 
+  // handleFight is responsible for triggering and managing the monsters fight.
   const handleFight = async () => {
     if (!selectedMonsterA || !selectedMonsterB) return;
 
@@ -35,6 +37,7 @@ const Battlefield = () => {
     return;
   };
 
+  // handleMonsterSelect is responsible for managing the selection of monsters.
   const handleMonsterSelect = (monster: MonsterEntity) => {
     if (selectedMonsterA?.name === monster.name) {
       setSelectedMonsterA(null);
@@ -47,6 +50,7 @@ const Battlefield = () => {
     }
   };
 
+  // manages the automatic scroll whenever the fight starts
   const bottomRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -84,7 +88,8 @@ const Battlefield = () => {
             onSelect={handleMonsterSelect}
           />
         </div>
-
+        
+        <h2 className='text-2xl sm:text-4xl md:text-5xl'>Battle logs</h2>
         <div className="mt-10 w-full max-w-5xl h-96 sm:h-140 bg-gray-200 rounded shadow p-4 overflow-y-auto">
           <p className="text-sm font-mono">🔪 Battle is about to start...</p>
           {fightLogs.map((log, index) => (

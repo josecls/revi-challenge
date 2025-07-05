@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
+// Home defines the introduction page - root of the project. The entrypoint to the Monsters Battle platform.
 const Home = () => {
   const navigate = useNavigate();
 
+  // handleStart takes the user to the monsters listing page.
   const handleStart = () => {
     navigate('/monsters');
   };
@@ -12,7 +14,7 @@ const Home = () => {
       <div /> {/* Top spacer */}
       <main className="flex flex-col items-center text-center gap-20">
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold font-[fredoka] font-bold">
-          Monster Battle
+          Monsters Battle
         </h1>
 
         <button
