@@ -52,6 +52,8 @@ export class BattlefieldEntity implements Battlefield {
   }
 
   async nextTurn(): Promise<void> {
+    this.logger('-------------------------');
+
     const round = Math.floor(this.turn / 2) + 1;
     this.logger(`🔄 Round ${round}`);
     await sleep(400);

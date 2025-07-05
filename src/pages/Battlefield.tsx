@@ -3,12 +3,12 @@ import { toast } from 'sonner';
 import { useState, useEffect, useRef } from 'react';
 
 import { BattlefieldEntity } from '@/core/Battlefield';
-import MonsterCard from '@/components/sections/MonsterBattlePreview';
+import MonsterCard from '@/components/sections/MonsterCard';
 import { Button } from '@/components/ui/button';
 import MonsterSelectionList from '@/components/sections/MonsterSelectionList';
 import { useMonsters } from '@/contexts/MonsterContext';
 import { MonsterEntity } from '@/core/Monster';
-import NoMonstersFound from '@/components/sections/NoMonstersFound'
+import NoMonstersFound from '@/components/sections/NoMonstersFound';
 
 // Battlefield defines the page where the action happens, i.e. the page where users can create and watch monsters battle.
 const Battlefield = () => {
@@ -60,51 +60,64 @@ const Battlefield = () => {
   return (
     <>
       {monsters.length > 0 ? (
-        <div className="flex min-h-screen flex-col">
-          <main className="mt-20 md:mt-40 flex flex-col items-center px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-[fredoka] font-bold text-purple-700 mb-10 text-center">
-              Welcome to the Battlefield
-            </h1>
+        <main className="mt-20 md:mt-40 px-4 sm:px-6 lg:px-8 flex flex-col w-full">
+          <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold font-[fredoka] text-[#674AA3] md:text-left mb-20 md:pl-20">
+            Welcome to the Battlefield
+          </h1>
 
-            <div className="flex flex-col lg:flex-row flex-wrap gap-8 justify-center items-center w-full">
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+            {/* LEFT SIDE - Monster Selection */}
+            <div className="flex flex-col justify-start">
+              <h2 className="text-xl font-semibold text-gray-700 mb-3">Monsters selection</h2>
+              <h4 className="text-sm text-gray-700 mb-8">
+                Hover over the monster to see its attributes
+              </h4>
               <MonsterSelectionList
                 monsters={monsters}
                 selectedA={selectedMonsterA}
                 selectedB={selectedMonsterB}
                 onSelect={handleMonsterSelect}
               />
+            </div>
 
-              {selectedMonsterA && <MonsterCard monster={selectedMonsterA} />}
-
-              <div className="flex flex-col justify-center gap-4">
-                <Button className="bg-red-700 text-white cursor-pointer" onClick={handleFight}>
-                  Fight
-                </Button>
+            {/* RIGHT SIDE - Selected Cards + Logs */}
+            <div className="flex flex-col gap-6">
+              <h2 className="text-xl font-semibold text-gray-700">Summary</h2>
+              <h4 className="text-sm text-gray-700">
+                See attribute changes in real time during the fight
+              </h4>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 bg-gray-200 p-5">
+                {selectedMonsterA && <MonsterCard monster={selectedMonsterA} />}
+                <div className="flex flex-col justify-center gap-4">
+                  {selectedMonsterA && selectedMonsterB && (
+                    <Button
+                      className="bg-red-600 hover:bg-red-700 text-2xl font-bold py-3 px-8 rounded-xl transition-transform duration-300 transform hover:scale-105 cursor-pointer"
+                      onClick={handleFight}
+                    >
+                      Fight!
+                    </Button>
+                  )}
+                </div>
+                {selectedMonsterB && <MonsterCard monster={selectedMonsterB} />}
               </div>
 
-              {selectedMonsterB && <MonsterCard monster={selectedMonsterB} />}
-
-              <MonsterSelectionList
-                monsters={monsters}
-                selectedA={selectedMonsterA}
-                selectedB={selectedMonsterB}
-                onSelect={handleMonsterSelect}
-              />
+              <h2 className="text-xl font-semibold text-gray-700">Battle Logs</h2>
+              <h4 className="text-sm text-gray-700">Get track of every single thing</h4>
+              <div className="w-full h-56 sm:h-80 bg-gray-200 rounded shadow p-4 overflow-y-auto">
+                <p className="text-sm font-mono">🔪 Battle is about to start...</p>
+                {fightLogs.map((log, index) => (
+                  <p key={index} className="text-sm font-mono">
+                    {log}
+                  </p>
+                ))}
+                <div ref={bottomRef} />
+              </div>
             </div>
-            
-            <h2 className='text-2xl sm:text-4xl md:text-5xl'>Battle logs</h2>
-            <div className="mt-10 w-full max-w-5xl h-96 sm:h-140 bg-gray-200 rounded shadow p-4 overflow-y-auto">
-              <p className="text-sm font-mono">🔪 Battle is about to start...</p>
-              {fightLogs.map((log, index) => (
-                <p key={index} className="text-sm font-mono">
-                  {log}
-                </p>
-              ))}
-              <div ref={bottomRef} />
-            </div>
-          </main>
-        </div>
-      ) : (<NoMonstersFound />)}
+          </div>
+        </main>
+      ) : (
+        <NoMonstersFound />
+      )}
     </>
   );
 };

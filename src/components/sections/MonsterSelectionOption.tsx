@@ -21,7 +21,7 @@ const MonsterSelectionOption = ({
   isSelectedAsB,
   onClick,
 }: MonsterSelectionOptionProps) => {
-  // regular border is gray, monster A is green and monster B is red.
+  // regular border is gray, monster A is green and monster B is red
   let borderColor = 'border-gray-300';
   if (isSelectedAsA) borderColor = 'border-green-400';
   else if (isSelectedAsB) borderColor = 'border-red-500';

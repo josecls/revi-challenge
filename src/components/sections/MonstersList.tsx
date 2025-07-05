@@ -1,4 +1,4 @@
-import MonsterCard from './MonsterBattlePreview';
+import MonsterCard from './MonsterCard';
 
 import { useMonsters } from '@/contexts/MonsterContext';
 
@@ -7,7 +7,7 @@ const MonstersList = () => {
   const { monsters } = useMonsters();
 
   return (
-    <div className="py-15 bg-white">
+    <div className="bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-4 md:px-12 lg:px-20 xl:px-32">
         {monsters.map((monster, index) => (
           <div key={index} className="min-w-0 w-full flex justify-center">

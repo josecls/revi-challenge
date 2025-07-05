@@ -12,7 +12,11 @@ const Monsters = () => {
       <main className="w-full">
         <MonstersHeader />
         <MonstersList />
-        {monsters.length === 0 && <NoMonstersFound />}
+        {monsters.length === 0 && (
+          <div className="w-full flex justify-center align-center h-100 md:h-200">
+            <NoMonstersFound />
+          </div>
+        )}
       </main>
     </div>
   );

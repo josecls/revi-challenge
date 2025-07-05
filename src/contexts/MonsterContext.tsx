@@ -5,7 +5,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-import { type MonsterAttributes } from '@/core/Monster'
+import { type MonsterAttributes } from '@/core/Monster';
 
 // MonsterContextType defines the structure of the monster context.
 type MonsterContextType = {

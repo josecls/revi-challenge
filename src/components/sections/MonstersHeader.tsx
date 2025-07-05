@@ -87,7 +87,7 @@ const MonstersHeader = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center px-4 md:px-12 lg:px-20 xl:px-32 mb-8 mt-50">
+    <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center px-4 md:px-12 lg:px-20 xl:px-32 mb-8 mt-40">
       <h1 className="text-4xl md:text-5xl font-extrabold font-[fredoka] text-[#674AA3] mt-10 md:mt-0">
         Monsters List
       </h1>
